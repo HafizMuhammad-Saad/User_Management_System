@@ -9,7 +9,7 @@ async function checkSession() {
 
 
         const currentPage = window.location.pathname;
-        const publicPages = ['/login.html', '/index.html']
+        const publicPages = ['/login.html', '/index.html', '/']
 
         if(!session && !publicPages.includes(currentPage)) {
             location.href = '/login.html'
