@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="shortcut icon" href="icons8-user-16.png" type="image/x-icon">
+
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+        <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav class="navbar bg-body-tertiary shadow">
+        <div class="container-fluid">
+         <div class="d-flex align-items-center border-bottom border-dark rounded-start-pill border-4">
+            <a class="navbar-brand" href="#"><i class="bi bi-person-circle fs-1"></i></a>
+            <h4 class="" id="hello-user"> hello user</h4>
+  
+         </div>
+          <button id="logout_btn" type="button"
+                        class="btn btn-danger fw-bold">
+                        <span>
+                            Logout
+                        </span>
+                    </button>
+        </div>
+      </nav>
+    <!-- <header class="d-flex justify-content-between align-items-center shadow-sm p-2 mb-5 bg-body-tertiary rounded text-center">
+        <div class="d-flex align-items-center justify-content-center gap-4">
+
+            <i class="bi bi-person-circle fs-1"></i>
+            <h4 class="" id="hello-user"> hello user</h4>
+        </div>
+        <button id="logout_btn" type="button"
+                        class="btn btn-danger fw-bold">
+                        <span>
+                            Logout
+                        </span>
+                    </button>
+    </header> -->
+
+
+
+    <div class="container-fluid px-1 py-5 mx-auto">
+        <div class="row d-flex justify-content-center">
+            <div class="col-lg-6 col-md-12 col-12 text-center">
+                <div class="card">
+                    <h5 class="text-center mb-4">User Management System</h5>
+                    <form class="form-card"  autocomplete="on" onsubmit="event.preventDefault()">
+                        <div class="row justify-content-between text-left">
+                            <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3" for="fname">First name<span class="text-danger"> *</span></label> <input type="text" id="fname" name="fname" placeholder="Enter your first name" onblur="validate(1)"> </div>
+                            <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3" for="lname">Last name<span class="text-danger"> *</span></label> <input type="text" id="lname" name="lname" placeholder="Enter your last name" onblur="validate(2)"> </div>
+                        </div>
+                        <div class="row justify-content-between text-left">
+                            <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3" for="email-2">Business email<span class="text-danger"> *</span></label> <input type="email" id="email-2" name="email-2" placeholder="example@gmail.com" onblur="validate(3)"> </div>
+                            <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3" for="mob">Phone number<span class="text-danger"> *</span></label> <input type="number" id="mob" name="mob" placeholder="For Example: 12345678932" onblur="validate(4)"> </div>
+                        </div>
+                        <div class="row justify-content-between text-left">
+                            <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3" for="job">Job title<span class="text-danger"> *</span></label> <input type="text" id="job" name="job" placeholder="For Example: developer..." onblur="validate(5)"> </div>
+                        </div>
+                        <!-- <div class="row justify-content-between text-left">
+                            <div class="form-group col-6 flex-column d-flex"> <label class="form-control-label px-3">What would you be using Flinks for?<span class="text-danger"> *</span></label> <input type="text" id="ans" name="ans" placeholder="" onblur="validate(6)"> </div>
+                        </div> -->
+                        <div class="row justify-content-end">
+                            <div class="form-group col-12"> <button type="submit" id="user-btn" class="btn my-3 btn-secondary w-100 fw-bold d-flex justify-content-center align-items-center">Add User</button> </div>
+                            <div class="form-group col-12">
+                                <!-- <button style="gap: 20px;" id="logout_btn" type="button"
+                        class="btn my-3 btn-danger w-100 fw-bold d-flex justify-content-center align-items-center">
+                        <span>
+                            Logout
+                        </span>
+                    </button> -->
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-12 col-lg-6 mt-5 table-responsive rounded">
+                <table class="table table-bordered table-striped ">
+                    <thead>
+                      <tr>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Business Email</th>
+                        <th scope="col">Phone Nmber</th>
+                        <th scope="col">Job Title</th>
+                        <th scope="col">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody class="shadow-lg p-3 mb-5 bg-body-tertiary rounded" id="user_table_body" >
+                     
+                    
+                    </tbody>
+                  </table>
+                </div>
+        </div>
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://kit.fontawesome.com/2ab38ab271.js" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+        crossorigin="anonymous"></script>
+
+
+
+        <script type="module" src="config.js"></script>
+        <script type="module" src="auth.js"></script>
+        <script type="module" src="user.js"></script>
+        <script type="module" src="app.js"></script>
+    <script>
+        function validate(val) {
+    v1 = document.getElementById("fname");
+    v2 = document.getElementById("lname");
+    v3 = document.getElementById("email-2");
+    v4 = document.getElementById("mob");
+    v5 = document.getElementById("job");
+    v6 = document.getElementById("ans");
+
+    flag1 = true;
+    flag2 = true;
+    flag3 = true;
+    flag4 = true;
+    flag5 = true;
+    flag6 = true;
+
+    if(val>=1 || val==0) {
+        if(v1.value == "") {
+            v1.style.borderColor = "red";
+            flag1 = false;
+        }
+        else {
+            v1.style.borderColor = "green";
+            flag1 = true;
+        }
+    }
+
+    if(val>=2 || val==0) {
+        if(v2.value == "") {
+            v2.style.borderColor = "red";
+            flag2 = false;
+        }
+        else {
+            v2.style.borderColor = "green";
+            flag2 = true;
+        }
+    }
+    if(val>=3 || val==0) {
+        if(v3.value == "") {
+            v3.style.borderColor = "red";
+            flag3 = false;
+        }
+        else {
+            v3.style.borderColor = "green";
+            flag3 = true;
+        }
+    }
+    if(val>=4 || val==0) {
+        if(v4.value == "") {
+            v4.style.borderColor = "red";
+            flag4 = false;
+        }
+        else {
+            v4.style.borderColor = "green";
+            flag4 = true;
+        }
+    }
+    if(val>=5 || val==0) {
+        if(v5.value == "") {
+            v5.style.borderColor = "red";
+            flag5 = false;
+        }
+        else {
+            v5.style.borderColor = "green";
+            flag5 = true;
+        }
+    }
+    if(val>=6 || val==0) {
+        if(v6.value == "") {
+            v6.style.borderColor = "red";
+            flag6 = false;
+        }
+        else {
+            v6.style.borderColor = "green";
+            flag6 = true;
+        }
+    }
+
+    flag = flag1 && flag2 && flag3 && flag4 && flag5 && flag6;
+
+    return flag;
+}
+
+async function deleteUser(userId) {
+    // Confirm before deleting
+    const result = await Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'No, cancel!',
+    });
+
+    if (result.isConfirmed) {
+        try {
+            const { data, error } = await supabase.from('users').delete().eq('id', userId);
+            if (error) throw error;
+
+            Swal.fire({
+                title: 'Deleted!',
+                text: 'User has been deleted.',
+                icon: 'success',
+            });
+
+            // Remove the row from the table
+            const row = document.querySelector(`tr[data-id='${userId}']`);
+            row.remove();
+
+        } catch (error) {
+            console.error('Error deleting user:', error);
+            Swal.fire({
+                title: 'Error!',
+                text: 'There was an issue deleting the user.',
+                icon: 'error',
+            });
+        }
+    }
+}
+
+    </script>
+
+</body>
+
+</html>

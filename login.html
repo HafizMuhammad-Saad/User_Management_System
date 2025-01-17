@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link rel="stylesheet" href="form.css">
+   
+
+</head>
+<body>
+        
+    <div class="container">
+        <h1>Welcome back <span>👋🏻</span>
+        </h1>
+        <p>Welcome back! Let's make this chapter of your learning adventure a remarkable success! Happy learning!"</p>
+        <form >
+            <label for="email-login">Email</label>
+            <input type="email" name="email" id="email-login" placeholder="Enter your email">
+
+            <label for="password-login">Password</label>
+            <input type="password" name="password" id="password-login" placeholder="Enter your password">
+
+            <button type="button" id="login-btn">Log in</button>
+        </form>
+
+        <div class="divider">
+            <span class="or-divider">OR</span>
+        </div>
+
+        <button type="button" class="google-login" id="google-login-btn"><i class="fa fa-google" aria-hidden="true"></i>
+            <a href="#">Log in with google</a></button>
+        <p>Don't have an account? <a href="index.html"> Sign up for free</a></p>
+        
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="module" src="config.js"></script>
+    <script type="module" src="auth.js"></script>
+    <script type="module" src="app.js"></script>
+</body>
+</html>
