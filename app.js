@@ -12,7 +12,8 @@ async function checkSession() {
         const publicPages = ['/login.html', '/index.html', '/']
 
         if(!session && !publicPages.includes(currentPage)) {
-            location.href = currentPage;
+            location.href = '/index.html';
+            return;
             
         } 
          if (session && publicPages.includes(currentPage)) {
@@ -20,6 +21,7 @@ async function checkSession() {
             console.log(currentPage);
             console.log(session);
             window.location.href = '/dashboard.html';
+            greeting();
         }
        
     } catch (error) {
@@ -43,7 +45,5 @@ async function checkSession() {
    
     }
  }
- greeting()
 
-
-window.onload = checkSession;
+document.addEventListener('DOMContentLoaded', checkSession);
